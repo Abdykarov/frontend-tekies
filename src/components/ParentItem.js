@@ -7,9 +7,6 @@ const ParentItem = ({parent, remove}) => {
             <td>{parent.firstName}</td>
             <td>{parent.lastName}</td>
             <td>
-                <Button>Edit</Button>
-            </td>
-            <td>
                 <Button onClick={() => remove(parent)}>Delete</Button>
             </td>
         </tr>

@@ -9,7 +9,7 @@ const ParentsTable = ({parents}) => {
         firstName: '',
         lastName: ''
     })
-    const [selectedFirstName, setSelectedFirstName] = useState("")
+    const [selectedFirstName, setSelectedFirstName] = useState('')
     const [selectedLastName, setSelectedLastName] = useState("")
 
     const handleFormSubmit = (event) => {
@@ -46,8 +46,7 @@ const ParentsTable = ({parents}) => {
         }
 
         const filteredParents = filteredData.filter(
-            (parent) => parent.firstName.split(" ").indexOf(selectedFirstName) !== -1
-        );
+            (parent) => parent.firstName.toLowerCase().indexOf(selectedFirstName.toLowerCase()) >= 0);
         return filteredParents
     }
 
@@ -57,8 +56,7 @@ const ParentsTable = ({parents}) => {
         }
 
         const filteredParents = filteredData.filter(
-            (parent) => parent.lastName.split(" ").indexOf(selectedLastName) !== -1
-        );
+            (parent) => parent.lastName.toLowerCase().indexOf(selectedLastName.toLowerCase()) >= 0);
         return filteredParents
     }
 
@@ -72,8 +70,8 @@ const ParentsTable = ({parents}) => {
         <div>
             <h1 style={{textAlign: "center"}}>Filter</h1>
             <form>
-                <input type="text" name="filterName" required="required" placeholder="Enter a name..." />
-                <input type="text" name="filterLastname" required="required" placeholder="Enter a lastname..." />
+                <input type="text" name="filterName" value={selectedFirstName} onChange={e => setSelectedFirstName(e.target.value)} required="required" placeholder="Enter a name..." />
+                <input type="text" name="filterLastname" value={selectedLastName} onChange={e => setSelectedLastName(e.target.value)} required="required" placeholder="Enter a lastname..." />
             </form>
 
             <h1 style={{textAlign: "center"}}>Parents list</h1>
@@ -81,7 +79,6 @@ const ParentsTable = ({parents}) => {
                 <tr>
                     <th>FirstName</th>
                     <th>Lastname</th>
-                    <th>Edit</th>
                     <th>Delete</th>
                 </tr>
 
